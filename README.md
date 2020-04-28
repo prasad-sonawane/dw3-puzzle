@@ -43,9 +43,31 @@ A proxy has been set up in `stocks` to proxy calls to `locahost:3333` which is t
 Please provide a short code review of the base `master` branch:
 
 #### Task 1-A
+
 1. What is done well?
+
+- Use of Angular material library which provides reusable and accessible component.
+- State management is done using ngrx which improves application performance.
+- Use of FormBuilder, FormGroup, Validators from @angular/forms in stock component.
+- Predefined features like google chart, angular material are used and makes it easy for developer to use by injecting them wherever required.
+
 2. What would you change?
+
+- Use appropriate/specific data types instead of using any.
+- Add access specifiers for functions and variables.
+- For a well structed application, use interfaces, enums, models and same should be reusable.
+- Update code to use async pipe from ngrx to pass observable data from stock component to chart component OR unsubscribe subscription done inside chart component.
+- Update code to refer constants instead of hard coded values OR use mock data wherever required.
+- Form fields should be made required, error should be shown if fields are not entered/selected.
+- Test cases should be added to cover all logical apsects of application and should run without failures, covering all functions/statements (branch coverage).
+- For readability purpose code indentation and formatting should be maintained.
+- Accessibility should be covered, code should be updated accordingly.
+
 3. Are there any code smells or problematic implementations?
+
+- Code is missing the API key. Generated and added same so as to interact with api endpoint and fetch results on UI.
+- Chart is not getting displayed because data in chart is empty so used async pipe from ngrx to pass observable data from stock component to chart component.
+- Form validation not handled before making API call. Error message added if fields on form are not selected/entered by user.
 
 > Make a PR to fix at least one of the issues that you identify
 

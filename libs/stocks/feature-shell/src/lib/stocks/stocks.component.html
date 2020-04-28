@@ -1,6 +1,11 @@
 <form [formGroup]="stockPickerForm">
   <mat-form-field>
     <input
+      id="input-stocks-symbol"
+      name="symbol"
+      type="text"
+      title="Input field for stocks symbol"
+      aria-label="Symbol"
       matInput
       placeholder="Symbol e.g AAPL"
       formControlName="symbol"
@@ -18,18 +23,28 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Favorite time period</mat-label>
-    <mat-select formControlName="period">
-      <mat-option
+    <mat-label aria-label="Time period">Favorite time period</mat-label>
+    <mat-select id="select-period" aria-label="Dropdown for selecting duration" name="period"
+    role="listbox" title="Select duration from values available" formControlName="period">
+      <mat-option role="option" aria-owns="select-duration" aria-label="Duration option"
         *ngFor="let timePeriod of timePeriods"
         [value]="timePeriod.value"
       >
         {{ timePeriod.viewValue }}
       </mat-option>
     </mat-select>
+    <mat-error>
+      <span for="period"
+      *ngIf="
+        !stockPickerForm.get('period').valid &&
+        stockPickerForm.get('period').touched
+      "
+      >Please select a period
+      </span>
+    </mat-error>
   </mat-form-field>
 
-  <button (click)="fetchQuote()" mat-raised-button>Go</button>
+  <button tabindex="0" id="stocks-btn" aria-label="Submit" title="Submit button" (click)="fetchQuote()" mat-raised-button>Go</button>
 </form>
 
-<coding-challenge-chart [data$]="quotes$"></coding-challenge-chart>
+<coding-challenge-chart [data$]="quotes$ | async"></coding-challenge-chart>

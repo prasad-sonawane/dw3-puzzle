@@ -1,8 +1,10 @@
 <google-chart
-  *ngIf="data"
+  id="app-google-chart"
+  aria-label="Google chart"
+  *ngIf="data$"
   [title]="chart.title"
   [type]="chart.type"
-  [data]="chartData"
+  [data]="data$"
   [columnNames]="chart.columnNames"
   [options]="chart.options"
 >
