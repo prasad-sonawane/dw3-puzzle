@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { PriceQueryFacade } from '@coding-challenge/stocks/data-access-price-query';
+import { STOCKS_FORM_CONTENTS } from './stocks.constants';
 
 @Component({
   selector: 'coding-challenge-stocks',
@@ -15,13 +16,14 @@ export class StocksComponent implements OnInit {
   public maxDate: Date;
   public startDate: Date;
   public endDate: Date;
-  MAX: string = 'max';
+  public contents: any;
 
   quotes$ = this.priceQuery.priceQueries$;
 
   constructor(private fb: FormBuilder, private priceQuery: PriceQueryFacade) {}
 
   ngOnInit() {
+    this.contents = STOCKS_FORM_CONTENTS;
     this.maxDate = new Date();
     this.stockPickerForm = this.fb.group({
       symbol: [null, Validators.required],
@@ -40,7 +42,7 @@ export class StocksComponent implements OnInit {
   fetchQuote() {
     if (this.stockPickerForm.valid) {
       const { symbol, startDate, endDate } = this.stockPickerForm.value;
-      this.priceQuery.fetchQuote(symbol, this.MAX, new Date(startDate), new Date(endDate));
+      this.priceQuery.fetchQuote(symbol, this.contents.MAX, new Date(startDate), new Date(endDate));
     }
   }
 

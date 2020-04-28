@@ -12,12 +12,12 @@
           !stockPickerForm.get('symbol').valid &&
           stockPickerForm.get('symbol').touched
         "
-        >Please enter a symbol</span
+        >{{contents.SYMBOL_LABEL_TEXT}}</span
       >
     </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Favorite time period (Start Date)</mat-label>
+    <mat-label>{{contents.START_DATE_LABEL_TEXT}}</mat-label>
     <input matInput [matDatepicker]="startDate" [max]="maxDate" (click)="startDate.open()" formControlName="startDate">
     <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
     <mat-datepicker #startDate></mat-datepicker>
@@ -26,12 +26,12 @@
         *ngIf="
           !stockPickerForm.get('startDate').valid &&
           stockPickerForm.get('startDate').touched">
-          Please select start date
+          {{contents.FROM_DATE_LABEL_TEXT}}
       </span>
     </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Favorite time period (End Date)</mat-label>
+    <mat-label>{{contents.END_DATE_LABEL_TEXT}}</mat-label>
     <input matInput [matDatepicker]="endDate" [max]="maxDate" (click)="endDate.open()" formControlName="endDate">
     <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
     <mat-datepicker #endDate></mat-datepicker>
@@ -39,12 +39,12 @@
       <span
         *ngIf="!stockPickerForm.get('endDate').valid &&
         stockPickerForm.get('endDate').touched">
-          Please select end date
+        {{contents.TO_DATE_LABEL_TEXT}}
     </span>
     </mat-error>
   </mat-form-field>
   
-  <button (click)="fetchQuote()" mat-raised-button>Go</button>
+  <button (click)="fetchQuote()" mat-raised-button>{{contents.SUBMIT_BUTTON_TEXT}}</button>
 </form>
 
 <coding-challenge-chart [data$]="quotes$ | async"></coding-challenge-chart>
